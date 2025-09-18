@@ -1,31 +1,42 @@
-# shadcn/ui monorepo template
+# Job Tracker
 
-This template is for creating a monorepo with shadcn/ui.
+## Description  
+The Job Tracker web application was developed to address a common problem faced by job seekers. With so many job portals and direct applications available, job seekers often forget where they have applied. This issue highlights the need for a centralized system that can record and manage all job applications in one place.  
 
-## Usage
+The main purpose of Job Tracker is to provide an efficient solution for organizing and monitoring job applications, helping users stay on top of their job search process in a structured way.  
 
-```bash
-pnpm dlx shadcn@latest init
-```
+---
 
-## Adding components
+## Features  
 
-To add components to your app, run the following command at the root of your `web` app:
+- **Authentication**: ❌ Not complete  
+- **Application Monitoring**: ❌ Not complete  
+- **Email Notification**: ❌ Not complete  
+- **Custom Email**: ❌ Not complete  
+- **TBA**: Upcoming features  
 
-```bash
-pnpm dlx shadcn@latest add button -c apps/web
-```
+---
 
-This will place the ui components in the `packages/ui/src/components` directory.
+## Frontend (FE)  
 
-## Tailwind
+- **Admin Dashboard**: ✅ Complete  
+- **Authentication**: ❌ Not complete  
+- **Form**: ❌ Not complete  
 
-Your `tailwind.config.ts` and `globals.css` are already set up to use the components from the `ui` package.
+---
 
-## Using components
+## Backend (BE)  
 
-To use the components in your app, import them from the `ui` package.
+- **Authentication**: ❌ Not complete  
+- **Validation**: ❌ Not complete  
+- **Security**: ❌ Not complete  
+- **REST API**: ❌ Not complete  
 
-```tsx
-import { Button } from "@workspace/ui/components/button"
-```
+---
+
+## Notes  
+
+- ✅ = Complete  
+- ❌ = Not complete  
+- TBA = To be announced  
+
