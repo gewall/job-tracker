@@ -10,5 +10,9 @@ export const useAppStore = create<AppProps>((set) =>({
     applicationStatusFilter: "all",
     applicationStatusFilterChange:(e) => {
         set(s => ({applicationStatusFilter: e}))
+    },
+    notifications: [],
+    addNotification: (e) => {
+        set(s => ({notifications: [...s.notifications, e]}))
     }
 }))

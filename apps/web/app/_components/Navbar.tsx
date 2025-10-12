@@ -1,18 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "../_components/NavLink";
 import { navbar } from "@/lib/constant/navbar";
 import Section from "../_components/Section";
 import { Button } from "@workspace/ui/components/button";
-import { ChevronsLeft, ChevronsRight } from "lucide-react";
+import { Bell, ChevronsLeft, ChevronsRight } from "lucide-react";
 import { useAppStore } from "@/lib/store/appstore";
 import clsx from "clsx";
 
 type Props = {};
 
 export default function Navbar({}: Props) {
-  const { sidebarOpen, sidebarToggle } = useAppStore((s) => s);
+  const { sidebarOpen, sidebarToggle, notifications } = useAppStore((s) => s);
+
   return (
     <>
       <nav
@@ -52,7 +53,7 @@ export default function Navbar({}: Props) {
           <Button variant={"outline"} size={"sm"} onClick={sidebarToggle}>
             {sidebarOpen ? <ChevronsLeft /> : <ChevronsRight />}
           </Button>
-          <div className="ml-auto"></div>
+          <div className="ml-auto">{notifications.length > 0 && <Bell />}</div>
         </Section>
       </nav>
     </>

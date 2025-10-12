@@ -7,6 +7,7 @@ import Card from "../_components/Card";
 
 import { LatestTable, StatusPieChart } from "../_sections/Datas";
 import { Metadata } from "next";
+import Socket from "../_components/Socket";
 
 export const metadata: Metadata = {
   title: "Job Trakcer",
@@ -31,7 +32,9 @@ export default function page({}: Props) {
           <StatusPieChart />
         </div>
       </div>
-      <div className="flex-1"></div>
+      <div className="flex-1">
+        <Socket />
+      </div>
     </Section>
   );
 }

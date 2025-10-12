@@ -5,4 +5,6 @@ export type AppProps = {
     sidebarToggle: () => void;
     applicationStatusFilter: ApplicationStatus|"all";
     applicationStatusFilterChange: (e: ApplicationStatus|"all") => void;
+    notifications: string[];
+    addNotification: (msg:string) => void;
 }

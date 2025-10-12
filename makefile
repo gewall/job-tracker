@@ -2,6 +2,7 @@
 WEB_DIR=apps/web
 API_DIR=apps/api
 API_CMD=$(API_DIR)/cmd
+ENV ?= dev
 
 # Default commands
 .PHONY: dev frontend backend build clean
@@ -10,7 +11,7 @@ API_CMD=$(API_DIR)/cmd
 dev:
 	@echo "🚀 Running frontend (Next.js) & backend (Go)..."
 	(cd $(WEB_DIR) && pnpm dev) & \
-	(cd $(API_CMD) && go run main.go)
+	(cd $(API_CMD) && set APP_ENV=${ENV} && go run main.go)
 
 # Jalankan frontend saja
 frontend:
@@ -18,9 +19,9 @@ frontend:
 	cd $(WEB_DIR) && pnpm dev
 
 # Jalankan backend saja
-backend:
+be-dev:
 	@echo "⚙️  Running Go backend..."
-	cd $(API_CMD) && go run main.go
+	@cd $(API_CMD) && set APP_ENV=${ENV} && go run main.go
 
 # Build frontend & backend
 build:
