@@ -36,16 +36,17 @@ func NewUserService(repository repository.UserRepository, email *utils.Email, co
 
 func (s *userService) Signin(user *models.UserSigninDTO) (*models.TokenResponseDTO, error) {
 	res, err := s.repository.GetUserByEmail(user.Email)
+	if err != nil {
+		return nil, err
+	}
 
 	data := &models.UserSigninDTO{
 		Email: res.Email,
 		Password: res.Password,
 	}
 	
-	if err != nil {
-		return nil, err
-	}
-
+	
+	
 	if err := bcrypt.CompareHashAndPassword([]byte(data.Password), []byte(user.Password)); err != nil {
 		return nil, err
 	}

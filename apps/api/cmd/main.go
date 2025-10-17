@@ -38,7 +38,7 @@ func main () {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	r.Use(cors.New(cors.Config{
-		 AllowOrigins:     []string{"*"}, // jangan gunakan "*" jika pakai credentials
+		 AllowOrigins:     []string{"http://localhost:3000"}, // jangan gunakan "*" jika pakai credentials
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "X-CSRF-Token"},
 		ExposeHeaders:    []string{"Content-Length"},
