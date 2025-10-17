@@ -1,8 +1,10 @@
 package repository
 
 import (
+	"errors"
 	"fmt"
 	models "job-tracker/internal/model"
+
 	"time"
 
 	"strconv"
@@ -29,13 +31,21 @@ func NewUserRepository(db *gorm.DB) UserRepository {
 }
 
 func (r *userRepository) GetUserByEmail(email string) (*models.User, error){
-	user := &models.User{}
-
-	if err := r.DB.First(user).Where("Email = ?", email).Error; err != nil {
-		return nil, err
+	user := models.User{
+	
 	}
 
-	return user, nil
+	res := r.DB.Limit(1).Where("Email = ?", email).First(&user);
+
+	if errors.Is(res.Error, gorm.ErrRecordNotFound) {
+		return nil, gorm.ErrRecordNotFound
+	}
+	
+	if res.Error != nil {
+		return nil, res.Error
+	}
+
+	return &user, nil
 }
 
 func (r *userRepository) CreateRefreshToken(token *models.RefreshToken) error {

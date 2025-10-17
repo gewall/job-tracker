@@ -32,9 +32,9 @@ export default function page({}: Props) {
           <StatusPieChart />
         </div>
       </div>
-      <div className="flex-1">
+      {/* <div className="flex-1">
         <Socket />
-      </div>
+      </div> */}
     </Section>
   );
 }

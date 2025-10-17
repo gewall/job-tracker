@@ -6,6 +6,7 @@ import (
 	models "job-tracker/internal/model"
 	"job-tracker/internal/service"
 	"job-tracker/internal/utils"
+	"log"
 	"time"
 
 	"net/http"
@@ -52,7 +53,10 @@ func (h *userHandler) Signin(c *gin.Context) {
 			Message: err.Error(),
 			Success: false,
 		})
+		return
 	}
+
+	log.Println("em", user.Email)
 
 	res,err := h.Service.Signin(user)
 
@@ -61,9 +65,18 @@ func (h *userHandler) Signin(c *gin.Context) {
 			Message: err.Error(),
 			Success: false,
 		})
+		return
 	}
 	
-	c.SetCookie("refresh_token",res.RefreshToken, int(time.Until(res.ExpiresAt).Seconds()), "/", "localhost", false, true)
+	c.SetCookie(
+    "refresh_token",
+    res.RefreshToken,
+    int((time.Hour * 24 * 7).Seconds()), // 7 hari
+    "/",
+    "",      // domain kosong
+    false,   // secure = false (karena localhost)
+    true,    // httpOnly = true
+)
 
 	c.JSON(http.StatusOK, utils.Response{
 		Message: "Signin successfully",
@@ -72,6 +85,7 @@ func (h *userHandler) Signin(c *gin.Context) {
 			"accessToken": res.AccessToken, 
 		},
 	})
+
 }
 
 func (h *userHandler) PingUser(c *gin.Context) {
